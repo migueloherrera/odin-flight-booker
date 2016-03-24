@@ -25,17 +25,17 @@
 <% unless @flights.empty? %>
   <h3>Flights found</h3>
   <hr>
-    <% @flights.each do |flight| %>
-      <p>Flight No.: <%= flight.id %></p>
-      <p>      From: <%= flight.from_airport.location %></p>
-      <p>        To: <%= flight.to_airport.location %></p>
-      <p>      Date: <%= flight.start_date.strftime("%d/%m/%Y") %></p>
-      <p>      Time: <%= flight.start_date.strftime("%H:%M") %></p>
-      <hr>
-    <% end %>
-			<!--
-					<%= hidden_field_tag(:passengers, params[:passengers]) %>
-					<%= submit_tag"Continue", class: "btn btn-success col-md-4 col-md-offset-8" %>
-				
-		-->		
+    <%= form_tag(new_booking_path, method: :get) do %> 
+      <% @flights.each do |flight| %>
+        <p><%= radio_button_tag(:flight_id, flight.id) %></p>
+        <p>Flight No.: <%= flight.id %></p>
+        <p>      From: <%= flight.from_airport.location %></p>
+        <p>        To: <%= flight.to_airport.location %></p>
+        <p>      Date: <%= flight.start_date.strftime("%d/%m/%Y") %></p>
+        <p>      Time: <%= flight.start_date.strftime("%H:%M") %></p>
+        <hr>
+      <% end %>
+			<%= hidden_field_tag(:passengers, params[:passengers]) %>
+			<%= submit_tag "Select Flight" %>
+		<% end %>
 <% end %>

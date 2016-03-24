@@ -1,6 +1,8 @@
 class Flight < ActiveRecord::Base
   belongs_to :from_airport, class_name: "Airport", foreign_key: :departure_id
   belongs_to :to_airport, class_name: "Airport", foreign_key: :destination_id
+  has_many :bookings
+  has_many :passengers, through: :passenger_bookings
   
   validates :departure_id, presence: true
   validates :destination_id, presence: true

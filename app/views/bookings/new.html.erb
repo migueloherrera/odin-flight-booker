@@ -1,0 +1,22 @@
+<h1>Selected flight</h1>
+<hr>
+<p>Flight No: <%= @flight.id %></p>
+<p>From: <%= @flight.from_airport.location %></p>
+<p>To: <%= @flight.to_airport.location %></p>
+<p>Date: <%= @flight.start_date.strftime("%d/%m/%Y") %></p>
+<p>Time: <%= @flight.start_date.strftime("%H:%M") %></p>
+
+<%= form_for(@booking) do |f| %>
+  Passengers: <%= @passengers %><br />
+  <%= f.fields_for :passengers do |p| %>
+    <%= p.label :name %>
+    <%= p.text_field :name %>
+    <%= p.label :email %>
+    <%= p.email_field :email %>
+    <br />
+  <% end %>
+  <%= hidden_field_tag(:passengers, params[:passengers]) %>
+  <%= f.hidden_field(:flight_id, value: params[:flight_id]) %>
+  <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
+  <%= f.submit "Book Flight" %>
+<% end %>
