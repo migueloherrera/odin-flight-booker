@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 ######## INSTALLED GEMS #########
 gem 'faker', '~> 1.6', '>= 1.6.3'
+gem 'letter_opener', :group => :development
 #################################
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
